@@ -1,0 +1,25 @@
+<?php
+
+/*
+* Implementing hook block
+*/
+
+function block_example_block_info(){
+ $blocks['test block'] = array(
+ 'info' => 'hook block example',
+ );
+return $blocks;
+}
+
+function block_example_block_view($delta = ''){
+  $blocks = array();
+    switch($delta){
+        case 'test block' : 
+        $blocks['subject'] = t('Hook block');   
+        $blocks['content'] = "A block created using hook_block";
+        
+      }
+   return $blocks;         
+}
+
+    

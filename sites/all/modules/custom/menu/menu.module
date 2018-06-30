@@ -1,0 +1,19 @@
+<?php 
+
+/*
+* Implementing Hook Menu
+*/
+
+function menu_menu(){
+  $items['test_menu'] = array(
+  'title' => 'Hook Menu Example',
+  'access arguments' => 'access content',
+  'page callback' => 'menu_callback'
+  ); 
+  return $items;
+}
+
+function menu_callback(){
+    
+    return t('This is the content within the menu page');
+}
