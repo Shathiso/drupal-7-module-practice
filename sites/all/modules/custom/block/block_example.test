@@ -1,0 +1,16 @@
+<?php
+
+/*
+* Testing block example
+*/
+
+class BlockTestCase extends DrupalWebTestCase {
+ 
+ public function getInfo() {
+ return array(
+ 'name' => 'block example module block functionality',
+ 'description' => 'Test block example block.',
+ 'group' => 'custom',
+     );
+   }
+}

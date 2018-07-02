@@ -2,3 +2,5 @@ name = "block example"
 description = "A hook block example"
 package = custom
 core = 7.x
+
+files[] = block_example.test
