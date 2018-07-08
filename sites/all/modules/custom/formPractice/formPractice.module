@@ -1,0 +1,16 @@
+<?php
+/*
+*IMplementing hook_menu
+*/
+
+function formPractice_menu(){
+  $items = array();
+  $items['form_practice'] = array(
+   'title' => 'Form Practice',
+   'page callback' => 'drupal_get_form',
+   'page arguments' => array('formPractice_form'),
+   'access arguments' => 'access content ',
+   'file' => 'formPractice.inc',
+  );
+  return $items;
+}

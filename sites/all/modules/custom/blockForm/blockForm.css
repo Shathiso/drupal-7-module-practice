@@ -1,0 +1,31 @@
+#block-blockform-form-block{
+ width : 80%;
+ display : block;
+ position : relative;
+}
+
+#block-blockform-form-block #edit-name{
+ width : 100%;
+ display : block;
+ position : relative;
+}
+
+#block-blockform-form-block #edit-phone{
+ width : 100%;
+ display : block;
+ position : relative;
+}
+
+#block-blockform-form-block #edit-email{
+ width : 100%;
+ display : block;
+ position : relative;
+}
+
+#block-blockform-form-block #edit-submit--2{
+  border : none;
+  background : #1e9bc3;
+  color : white;
+  border-radius : 2px;
+  padding : 6px 10px 6px 10px;
+}

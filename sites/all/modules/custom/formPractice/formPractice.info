@@ -1,0 +1,4 @@
+name = "Form Practice"
+description = "Practicing form development"
+core = 7.x
+package = custom
