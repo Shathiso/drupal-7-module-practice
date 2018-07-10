@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /*
 * Implementing Hook Menu
@@ -9,11 +9,33 @@ function menu_menu(){
   'title' => 'Hook Menu Example',
   'access arguments' => 'access content',
   'page callback' => 'menu_callback'
-  ); 
+  );
   return $items;
 }
 
+/*----- Callback function from the menu -----*/
 function menu_callback(){
-    
-    return t('This is the content within the menu page');
+  $output = array(
+    '#theme' => 'menu_template',
+    /*-- variables --*/
+    '#first_text' => $first_text,
+    '#second_text' => $second_text,
+  );
+  return $output;
+}
+
+/*  ---- Hook Theme --
+* Defines a returned array with the template => an array
+*
+---*/
+function menu_theme($existing, $type, $theme, $path){
+  return array(
+      'menu_template' => array(
+          'template' => 'menu_template',
+          'variables' => array(
+             'first_text' => 'Show time',
+             'second_text' => NULL,
+         ),
+      ),
+  );
 }

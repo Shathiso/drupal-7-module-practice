@@ -2,3 +2,5 @@ name = "menu_hook example"
 description = "Hook Menu example"
 core = 7.x
 package = custom
+
+stylesheets[all][] = menu.css
