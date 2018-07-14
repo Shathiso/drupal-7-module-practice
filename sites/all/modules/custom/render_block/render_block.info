@@ -1,0 +1,6 @@
+name = Render Block listing
+description = A module showcasing a render array() block
+core = 7.x
+package = custom
+
+styles[][all] = render_block.css

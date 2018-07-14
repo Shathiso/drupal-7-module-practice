@@ -1,0 +1,48 @@
+<?php
+/*
+ * Implementing hook_block_info
+ */
+
+function render_block_block_info(){
+
+    $blocks['render_block'] = array(
+        'info' => 'Render Array',
+    );
+    return $blocks;
+}
+
+
+//Block view function with the $delta= '' & switch case as always
+function render_block_block_view($delta = ''){
+
+    $blocks = array();
+    switch ($delta) {
+        case 'render_block':
+            $blocks['subject'] = t('Render Blocks');
+            $blocks['content'] = array(
+                '#theme' => 'render_block_block_theme',
+            );
+    }
+    return $blocks;
+}
+
+//Theme function being declared
+function render_block_block_theme($existing, $type, $theme, $path){
+    return array(
+        'render_block_block_item' => array(
+            'template' => 'render_block_block_item',
+            'variables' => array(
+               'title' => NULL,
+               'items' => NULL,
+           ),
+        ),
+    );
+
+}
+
+
+function theme_render_block($variables) {
+    extract($variables);
+    drupal_add_css(drupal_get_path('module', 'render_block.css') );
+    return '' . $element['#children'] . '';
+}

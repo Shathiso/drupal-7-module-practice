@@ -1,0 +1,53 @@
+<?php
+/*
+ * Implementing hook_block_info
+ */
+
+function templated_block_block_info(){
+    $blocks['templated_block'] = array(
+        'info' => t('Templated Block'),
+    );
+    return $blocks;
+}
+
+//Block view function with the $delta= '' & switch case as always
+function templated_block_block_view($delta = ''){
+
+    $blocks = array();
+    switch ($delta) {
+        case 'templated_block':
+            $variables = array(
+            'heading' => 'Block theming example',
+            'description'  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip',
+            );
+            $blocks['subject'] = t('Templated Blocks');
+            $blocks['content'] = theme('templated_block_template', $variables);
+            break;
+    }
+    return $blocks;
+}
+
+
+//hook Theme function being declared
+function templated_block_theme(){
+  return array(
+      'templated_block_template' => array(
+          'template' => 'templated_block_template',
+          'variables' => array(
+             'title' => NULL,
+             'items' => NULL,
+         ),
+      ),
+  );
+
+}
+
+
+
+function theme_templated_block($variables) {
+    extract($variables);
+    drupal_add_css(drupal_get_path('module', 'templated_block.css') );
+    return '' . $element['#children'] . '';
+}
