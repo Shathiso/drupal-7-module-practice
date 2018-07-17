@@ -1,0 +1,141 @@
+<?php
+
+
+/*
+* Implementing 2 hook_menu
+*/
+
+function db_practice_menu(){
+    
+    $items = array();
+    $items['register'] = array(
+    'title'=> 'Registration',
+    'page callback'=> 'drupal_get_form',
+    'page arguments'=> array('db_practice_form'),
+    'access arguments'=> 'access content',
+    
+    );
+    
+    $items['details'] = array(
+    'title'=> 'Registration details',
+    'page callback'=> 'db_practice_display',
+    'access arguments'=> 'access content',
+    
+    );
+    return $items;
+}
+
+
+/*
+* Implementing hook_form
+*/
+
+function db_practice_form($node, &$form_state){
+    
+    $form['name'] = array(
+     '#type' => 'textfield',
+     '#title' => t('Name'),
+     '#description' => t('Password field.'),
+     '#required' => TRUE,
+    );
+    
+      $form['surname'] = array(
+     '#type' => 'textfield',
+     '#title' => t('Surname'),
+     '#description' => t('Surname field.'),
+     '#required' => TRUE,
+    );
+    
+      $form['email'] = array(
+     '#type' => 'textfield',
+     '#title' => t('Email'),
+     '#description' => t('Email field.'),
+     '#required' => TRUE,
+    );
+    
+      $form['number'] = array(
+     '#type' => 'textfield',
+     '#title' => t('Phone number'),
+     '#description' => t('Phone number field.'),
+     '#required' => TRUE,
+    );
+     $form['save'] = array(
+            '#type' => 'submit',
+        '#value' => 'submit',
+            '#submit' =>  array('db_practice_form_submit'),
+         '#validate' =>  array('db_practice_form_validate'),
+    );
+    
+    return $form;
+}
+
+/*
+* Implementing hook_form_validate
+*/
+
+function db_practice_form_validate($form, &$form_state) {
+    if ($form_state['values']['name'] == '' || $form_state['values']['surname'] == '' ) {
+            form_set_error( 'Please enter all fields');
+    }
+}
+
+/*
+* Implementing hook_form_submit
+*/
+
+function db_practice_form_submit($form_id, &$form_state){
+    global $user;
+       
+    $nid = db_insert('db_practice')
+  ->fields(array(
+    'name' => $form_state['values']['name'],
+    'surname' => $form_state['values']['surname'],
+    'email' => $form_state['values']['email'],
+    'number' => $form_state['values']['number'],
+  ))
+  ->execute();
+        
+    drupal_set_message(t('Your details were stored'));
+    
+}
+
+
+/*
+* Fetching data to be displayed page
+*/
+
+function db_practice_display(){
+    
+  $results = db_query('SELECT * FROM {db_practice}');
+  
+  $header = array(t('id'), t('name'), t('surname'), t('email'), t('number'));
+   $rows = array();
+  
+    foreach($results AS $result){
+        $rows[] = array(
+         $result->nid,
+         $result->name,
+         $result->surname,
+         $result->email,
+         $result->number,
+        
+        );
+    }
+    
+    return theme('table', array('header' => $header, 'rows' => $rows));
+}
+
+
+/*
+* theming the pages
+
+
+
+function db_practice_theme(){
+    
+    return array(
+    
+        
+    );
+    
+}*/

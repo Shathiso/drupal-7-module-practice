@@ -1,0 +1,56 @@
+<?php
+
+/*
+* Implementing hook_schema()
+*/
+
+function db_practice_schema(){
+
+     $schema['db_practice'] = array(
+    // Example (partial) specification for table "node".
+    'description' => 'The base table for nodes.',
+    'fields' => array(
+      'nid' => array(
+        'description' => 'The primary identifier for a node.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+         'length' => '32',
+        'not null' => TRUE,
+      ),
+      'name' => array(
+        'description' => 'The name field.',
+        'type' => 'varchar',
+         'length' => '32',
+        'not null' => TRUE,
+        'default' => '',
+      ),
+         'surname' => array(
+        'description' => 'The surname field.',
+        'type' => 'varchar',
+            'length' => '32',
+        'not null' => TRUE,
+        'default' => '',
+      ),
+       'email' => array(
+        'description' => 'The email field.',
+        'type' => 'varchar',
+        'length' => '32',
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'number' => array(
+        'description' => 'The number field.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    // For documentation purposes only; foreign keys are not created in the
+    // database.
+    ),
+    'primary key' => array(
+      'nid',
+    ),
+  );
+  return $schema;
+
+}
