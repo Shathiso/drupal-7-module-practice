@@ -1,0 +1,39 @@
+<?php
+/*
+* Implementing hook_block_info
+*/
+
+function practice_block__block_info(){
+   $blocks['practice_block'] = array(
+    'info' => 'Practice Block',
+   );
+   return $blocks;
+
+}
+
+/*
+* Implementing hook_block_view
+*/
+
+function  practice_block_block_view($delta = ''){
+    $blocks = array();
+    switch($delta){
+      case 'practice_block':
+        $variables = array(
+        'text_one' => 'Heading 1',
+        'text_two' => 'This is a block practice module, to see if i remenber the way it is supposed to be contructed using a render array and theme function',
+      );
+      $blocks['subject'] = 'A practice block';
+      $blocks['content'] = theme('practice_block_template', $variables);
+
+    }
+    return $blocks;
+}
+
+function practice_block_theme(){
+   return array(
+     'practice_block_template' => array(
+      'template' => 'practice_block_template',
+   ),
+ );
+}

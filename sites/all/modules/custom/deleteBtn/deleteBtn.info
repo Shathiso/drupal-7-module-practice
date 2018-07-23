@@ -1,0 +1,4 @@
+name = Delete Button
+description = A module that creates a delete button on every node
+core = 7.x
+package = custom

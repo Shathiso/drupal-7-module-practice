@@ -1,0 +1,4 @@
+name = Red Link
+description = A module that creates a node delete button
+core = 7.x
+package = custom

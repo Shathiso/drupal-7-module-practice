@@ -1,0 +1,4 @@
+name = Practice Block
+description = A module to practice creating a block
+core = 7.x
+package = custom
